@@ -4,6 +4,7 @@ class TextCleaner:
     uncleanText = open('C:\Book.txt').read()
     cleanText = re.sub('[^A-Za-z0-9\s]+', '', uncleanText)
     open('C:\Book.txt', 'w').write(cleanText)
+
 # create function, replace values due to dictionary
 def replace_words(base_text, device_values):
     for key, val in device_values.items():
