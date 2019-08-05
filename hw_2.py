@@ -1,7 +1,7 @@
 # User will be X by default, O is a computer move
 # In the end of the game there is no special message (like: do you want to try one more time?)
-# Case when no one won has been implemented.
-# Used random for the computer moves
+# Case when cell does not exist (no one won) has been implemented.
+# Used random function for the computer moves
 # Verification of cell ocupation and type of symbol has been implemented
 
 # use random build in function
@@ -38,14 +38,14 @@ def isWinner(bo, le):
 # Verify possible moves. Exclude X and O from possible moves
 possible_move = [x for x in gameboard if x != 'X' and x != 'O']
 
-# Execute code while someone wins
+# Execute code while someone wins or free cell will not exist
 for let in ['X', 'O']:
     while not isWinner(gameboard, let):
             try:
                 move = int(input('Pick a number from 1-9:'))                # Show message, pick a number
                 if move in possible_move:                                   # If your move is right then at first time move as X, rewrite gameboard with new values
                     insertLetter('X', move-1)
-                    if isWinner(gameboard, 'X'):                            # Verify does X is winner, exit from loop
+                    if isWinner(gameboard, 'X'):                            # Verify is a winner X, exit from loop
                         print('X, won the game!')
                         break
                     if gameboard.count('X') == 5:                           # Raise message when no one win
@@ -55,7 +55,7 @@ for let in ['X', 'O']:
                     possible_move = [x for x in gameboard if x != 'X' and x != 'O']     #Exclude X and O from possible moves
                     move_PC = random.choice(possible_move)                  # Select random move for PC
                     insertLetter('O',move_PC-1)                             # Isert O on this position
-                    if isWinner(gameboard, 'O'):                            # Verify does O is winner, exit from loop
+                    if isWinner(gameboard, 'O'):                            # Verify is a winner O, exit from loop
                         print('O, won the game!')
                         break
                     possible_move = [x for x in gameboard if x != 'X' and x != 'O']     #Exclude X and O from possible moves
